@@ -2,7 +2,7 @@ require "byebug"
 
 class Board
 
-  attr_reader :size
+  attr_reader :size, :grid
 
   def initialize(n)
     @grid = Array.new(n) { Array.new(n, :N) }
@@ -15,6 +15,7 @@ class Board
       sub_arr.each { |el| row_str += el.to_s + " " }
       puts "#{row_str[0...-1]}"
     end
+    print "\n"
   end
 
   def [](pos)
@@ -34,7 +35,7 @@ class Board
   def attack(pos)
     if self[pos] == :S
       self[pos] = :H
-      puts "you sunk my battleship!"
+      puts "You sunk a battleship!\n\n"
       return true
     else
       self[pos] = :X
